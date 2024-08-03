@@ -19,13 +19,16 @@ public class UdpClientManager : MonoBehaviour
         udpClient = new UdpClient();
         remoteEndPoint = new IPEndPoint(IPAddress.Parse(serverIP), serverPort);
         udpClient.BeginReceive(new AsyncCallback(OnUdpDataReceived), null);
+
+        SendMessage("Unity conected!");
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            SendMessage("Hello, this is a message sent by pressing Space!");
+            SendMessage("test");
+            Debug.Log("Hello, this is a message sent by pressing Space!");
         }
     }
 

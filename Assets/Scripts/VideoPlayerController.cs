@@ -8,18 +8,18 @@ public class VideoPlayerController : MonoBehaviour
 
     void Start()
     {
-        // Exemplo de como pegar um videoclip pelo nome
-        string videoName = "MeuVideo";
-        VideoClip clip = videoManager.GetVideoClipByName(videoName);
+   
+        //string videoName = "MeuVideo";
+        //VideoClip clip = videoManager.GetVideoClipByName(videoName);
 
-        if (clip != null)
-        {
-            videoPlayer.clip = clip;
-            videoPlayer.Play();
-        }
-        else
-        {
-            Debug.LogError("VideoClip não encontrado: " + videoName);
-        }
+        //if (clip != null)
+        //{
+        //    videoPlayer.clip = clip;
+        //    videoPlayer.Play();
+        //}
+        //else
+        //{
+        //    Debug.Log("VideoClip não encontrado: " + videoName);
+        //}
     }
 }
