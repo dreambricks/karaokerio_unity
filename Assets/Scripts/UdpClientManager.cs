@@ -14,7 +14,9 @@ public class UdpClientManager : MonoBehaviour
 
     public event Action<string> OnMessageReceived;
 
-    void Start()
+    public string data;
+
+    async void Start()
     {
         udpClient = new UdpClient();
         remoteEndPoint = new IPEndPoint(IPAddress.Parse(serverIP), serverPort);

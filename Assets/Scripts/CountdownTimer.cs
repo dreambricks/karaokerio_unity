@@ -4,9 +4,9 @@ using UnityEngine.UI;
 
 public class CountdownTimer : MonoBehaviour
 {
-    public float totalTime;  // Tempo total da contagem regressiva em segundos
-    public Text countdownText;
+    public float totalTime;
     private float currentTime;
+    public Text countdownText;
 
     [SerializeField] private GameObject video;
 

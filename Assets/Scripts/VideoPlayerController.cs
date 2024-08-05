@@ -6,20 +6,32 @@ public class VideoPlayerController : MonoBehaviour
     public VideoManager videoManager;
     public VideoPlayer videoPlayer;
 
-    void Start()
-    {
-   
-        //string videoName = "MeuVideo";
-        //VideoClip clip = videoManager.GetVideoClipByName(videoName);
+    [SerializeField] UDPReceiver udpClientManager;
 
-        //if (clip != null)
-        //{
-        //    videoPlayer.clip = clip;
-        //    videoPlayer.Play();
-        //}
-        //else
-        //{
-        //    Debug.Log("VideoClip não encontrado: " + videoName);
-        //}
+    private void Update()
+    {
+        HandleReceivedMessage(udpClientManager.data);
+    }
+
+    private void HandleReceivedMessage(string message)
+    {
+        string[] messages = message.Split(' ');
+
+        if (messages[0] == "start")
+        {
+            string videoName = messages[1];
+
+            VideoClip clip = videoManager.GetVideoClipByName(videoName);
+
+            if (clip != null)
+            {
+                videoPlayer.clip = clip;
+            }
+            else
+            {
+                Debug.Log("VideoClip não encontrado: " + videoName);
+            }
+        }
+
     }
 }
