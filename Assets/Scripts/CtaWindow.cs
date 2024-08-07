@@ -8,6 +8,7 @@ public class CtaWindow : MonoBehaviour
     [SerializeField] private UDPReceiver udp;
     [SerializeField] private GameObject countDown;
 
+
     private void Update()
     {
         VerifyData();
@@ -15,7 +16,7 @@ public class CtaWindow : MonoBehaviour
 
     private void VerifyData()
     {
-        string[] messages = udp.data.Split(" ");
+        string[] messages = udp.GetLastestData().Split(" ");
         if (messages[0] == "start") { 
             countDown.SetActive(true);
             gameObject.SetActive(false);

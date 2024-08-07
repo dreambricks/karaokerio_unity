@@ -20,6 +20,7 @@ public class VideoPlayerController : MonoBehaviour
         if (messages[0] == "start")
         {
             string videoName = messages[1];
+         
 
             VideoClip clip = videoManager.GetVideoClipByName(videoName);
 
