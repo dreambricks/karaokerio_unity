@@ -1,20 +1,17 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.Video;
 
 public class VideoWindow : MonoBehaviour
 {
-
-    [SerializeField] private VideoPlayer player;
+    public VideoPlayer player;
     [SerializeField] private GameObject qrcodewindow;
-
-
 
     private void OnEnable()
     {
         player.Play();
+        Invoke("TriggerRequest", 30f);
     }
 
     private void Start()
@@ -27,6 +24,7 @@ public class VideoWindow : MonoBehaviour
         {
             Debug.LogError("VideoPlayer não está atribuído.");
         }
+
     }
 
     void OnVideoEnd(VideoPlayer vp)
@@ -34,6 +32,11 @@ public class VideoWindow : MonoBehaviour
         player.clip = null;
         qrcodewindow.SetActive(true);
         gameObject.SetActive(false);
+    }
+
+    private void TriggerRequest()
+    {
+        StartCoroutine(GetRequest("http://localhost:5000/save_video"));
     }
 
     IEnumerator GetRequest(string uri)
@@ -44,14 +47,12 @@ public class VideoWindow : MonoBehaviour
 
             if (webRequest.result == UnityWebRequest.Result.ConnectionError || webRequest.result == UnityWebRequest.Result.ProtocolError)
             {
-                Debug.LogError("Error: " + webRequest.error);
+                Debug.LogError("Erro na requisição: " + webRequest.error);
             }
             else
             {
-                // Successfully received a response
-                Debug.Log("Received: " + webRequest.downloadHandler.text);
+                Debug.Log("Requisição bem-sucedida!");
             }
         }
     }
-
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CtaWindow : MonoBehaviour
@@ -16,11 +14,20 @@ public class CtaWindow : MonoBehaviour
 
     private void VerifyData()
     {
-        string[] messages = udp.GetLastestData().Split(" ");
+        string[] messages = udp.GetLastestData().Split(",");
         if (messages[0] == "start") { 
             countDown.SetActive(true);
+            SaveLog();
             gameObject.SetActive(false);
         }
+    }
+
+    void SaveLog()
+    {
+        DataLog dataLog = LogUtil.GetDatalogFromJson();
+        dataLog.status = StatusEnum.CANTOU.ToString();
+        dataLog.additional = "vazio";
+        LogUtil.SaveLog(dataLog);
     }
 
 }

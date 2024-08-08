@@ -15,7 +15,7 @@ public class VideoPlayerController : MonoBehaviour
 
     private void HandleReceivedMessage(string message)
     {
-        string[] messages = message.Split(' ');
+        string[] messages = message.Split(',');
 
         if (messages[0] == "start")
         {
